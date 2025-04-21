@@ -810,19 +810,30 @@
             ];
         }
 
-        // Restaurer la position de défilement après rechargement
+        // Restaurer la position de défilement après rechargement, mais seulement si c'est un changement de langue
         window.addEventListener('load', () => {
+            const isLanguageChange = localStorage.getItem('isLanguageChange') === 'true';
             const savedScrollPosition = localStorage.getItem('scrollPosition');
-            if (savedScrollPosition) {
+
+            if (isLanguageChange && savedScrollPosition) {
+                // Si le rechargement provient d’un changement de langue, restaurer la position
                 window.scrollTo(0, parseInt(savedScrollPosition));
-                localStorage.removeItem('scrollPosition'); // Nettoyer après restauration
+            } else {
+                // Sinon (entrée sur le site ou rafraîchissement manuel), commencer en haut
+                window.scrollTo(0, 0);
             }
+
+            // Nettoyer les clés après restauration
+            localStorage.removeItem('scrollPosition');
+            localStorage.removeItem('isLanguageChange');
         });
 
         // Gestion du bouton de permutation de langue
         languageToggle.addEventListener('click', () => {
             // Sauvegarder la position de défilement avant de recharger
             localStorage.setItem('scrollPosition', window.scrollY);
+            // Indiquer que ce rechargement est dû à un changement de langue
+            localStorage.setItem('isLanguageChange', 'true');
 
             // Changer la langue
             const newLang = lang === 'en' ? 'fr' : 'en';
