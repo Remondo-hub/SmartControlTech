@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solutions en automatisme et instrumentation pour l’industrie : conception, fourniture, installation, formation et maintenance.">
-    <meta name="keywords" content="automatisme, instrumentation, PLC, SCADA, IEC 61131, maintenance, formation, industrie">
+    <meta name="description" content="Automation and instrumentation solutions for industry: design, supply, installation, training, and maintenance.">
+    <meta name="keywords" content="automation, instrumentation, PLC, SCADA, IEC 61131, maintenance, training, industry">
     <meta name="author" content="AutoTech Solutions">
-    <title>AutoTech Solutions - Expert en Automatisme & Instrumentation</title>
+    <title>AutoTech Solutions - Expert in Automation & Instrumentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,6 +51,30 @@
         }
         .nav-item {
             position: relative;
+        }
+        .language-toggle {
+            position: absolute;
+            right: 1em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .language-toggle button {
+            padding: 0.5em 1em;
+            font-size: 1em;
+            border-radius: 4px;
+            border: none;
+            background: #FFFFFF;
+            color: #0A1F44;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .language-toggle button:hover {
+            background: #00B2FF;
+            color: #FFFFFF;
+        }
+        .language-toggle button:focus {
+            outline: 2px solid #00B2FF;
+            outline-offset: 2px;
         }
         nav a, .dropdown a {
             color: #FFFFFF;
@@ -436,122 +460,134 @@
                 width: 90%;
                 padding: 1.2em;
             }
+            .language-toggle {
+                position: static;
+                margin-top: 1em;
+                transform: none;
+            }
+            .language-toggle button {
+                width: 100%;
+                max-width: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>AutoTech Solutions</h1>
-        <p>Vos solutions pour l’industrie : fourniture, installation, formation, maintenance</p>
-        <a href="#services" aria-label="Découvrir les services d'automatisme et d'instrumentation">Découvrir mes services</a>
+        <p>Your solutions for industry: supply, installation, training, maintenance</p>
+        <a href="#services" aria-label="Discover automation and instrumentation services">Discover my services</a>
     </header>
-    <nav role="navigation" aria-label="Menu principal">
+    <nav role="navigation" aria-label="Main menu">
         <div class="nav-item" aria-haspopup="true" aria-expanded="false">
-            <a href="#home" aria-label="Aller à la section Accueil"><i class="fas fa-home" aria-hidden="true"></i> Accueil</a>
+            <a href="#home" aria-label="Go to Home section"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
         </div>
         <div class="nav-item" aria-haspopup="true" aria-expanded="false">
-            <a href="#services" aria-label="Aller à la section Services"><i class="fas fa-tools" aria-hidden="true"></i> Services</a>
+            <a href="#services" aria-label="Go to Services section"><i class="fas fa-tools" aria-hidden="true"></i> Services</a>
             <div class="dropdown">
-                <a href="#etude-solution" class="dropdown-item active" data-tab="etude-solution">Étude et Solution</a>
-                <a href="#fournitures" class="dropdown-item" data-tab="fournitures">Fournitures et Matériel</a>
-                <a href="#installation" class="dropdown-item" data-tab="installation">Installation, Tests et Mise en Service</a>
-                <a href="#formation" class="dropdown-item" data-tab="formation">Formation et Entraînement</a>
+                <a href="#etude-solution" class="dropdown-item active" data-tab="etude-solution">Study and Solution</a>
+                <a href="#fournitures" class="dropdown-item" data-tab="fournitures">Supplies and Equipment</a>
+                <a href="#installation" class="dropdown-item" data-tab="installation">Installation, Testing, and Commissioning</a>
+                <a href="#formation" class="dropdown-item" data-tab="formation">Training and Education</a>
                 <a href="#maintenance" class="dropdown-item" data-tab="maintenance">Maintenance</a>
             </div>
         </div>
         <div class="nav-item" aria-haspopup="true" aria-expanded="false">
-            <a href="#about" aria-label="Aller à la section À propos"><i class="fas fa-user" aria-hidden="true"></i> À propos</a>
+            <a href="#about" aria-label="Go to About section"><i class="fas fa-user" aria-hidden="true"></i> About</a>
             <div class="dropdown">
-                <a href="#qui-nous-sommes">Qui nous sommes</a>
-                <a href="#industries">Industries que nous servons</a>
+                <a href="#qui-nous-sommes">Who We Are</a>
+                <a href="#industries">Industries We Serve</a>
             </div>
         </div>
         <div class="nav-item" aria-haspopup="true" aria-expanded="false">
-            <a href="#contact" aria-label="Aller à la section Contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
+            <a href="#contact" aria-label="Go to Contact section"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
+        </div>
+        <div class="language-toggle">
+            <button id="language-toggle" aria-label="Switch to French language">Français</button>
         </div>
     </nav>
     <section id="home">
-        <h2>Accueil</h2>
-        <p>Ingénieur automaticien passionné, je propose des solutions complètes pour l’industrie : de la fourniture de matériel à la mise en service, en passant par la formation et la maintenance. Cliquez ci-dessous pour explorer mes services.</p>
+        <h2>Home</h2>
+        <p>Passionate automation engineer, I offer comprehensive solutions for industry: from equipment supply to commissioning, including training and maintenance. Click below to explore my services.</p>
     </section>
     <section id="services">
         <h2>Services</h2>
         <div class="services-grid" id="services-grid">
             <div class="service-card active" data-tab="etude-solution" role="button" tabindex="0">
                 <i class="fas fa-hammer" aria-hidden="true"></i>
-                <h3>Étude et Solution</h3>
-                <p>Conception, programmation et optimisation.</p>
+                <h3>Study and Solution</h3>
+                <p>Design, programming, and optimization.</p>
             </div>
             <div class="service-card" data-tab="fournitures" role="button" tabindex="0">
                 <i class="fas fa-box" aria-hidden="true"></i>
-                <h3>Fournitures et Matériel</h3>
-                <p>Équipements et logiciels industriels.</p>
+                <h3>Supplies and Equipment</h3>
+                <p>Industrial equipment and software.</p>
             </div>
             <div class="service-card" data-tab="installation" role="button" tabindex="0">
                 <i class="fas fa-tools" aria-hidden="true"></i>
-                <h3>Installation et Mise en Service</h3>
-                <p>Mise en place et validation.</p>
+                <h3>Installation and Commissioning</h3>
+                <p>Setup and validation.</p>
             </div>
             <div class="service-card" data-tab="formation" role="button" tabindex="0">
                 <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-                <h3>Formation et Entraînement</h3>
-                <p>Formations pour opérateurs et ingénieurs.</p>
+                <h3>Training and Education</h3>
+                <p>Training for operators and engineers.</p>
             </div>
             <div class="service-card last-card" data-tab="maintenance" role="button" tabindex="0">
                 <i class="fas fa-wrench" aria-hidden="true"></i>
                 <h3>Maintenance</h3>
-                <p>Entretien et calibrage.</p>
+                <p>Servicing and calibration.</p>
             </div>
         </div>
         <div class="selected-service-container" id="selected-service-container">
-            <!-- La carte sélectionnée et ses sous-services seront insérés ici dynamiquement -->
+            <!-- The selected card and its sub-services will be inserted here dynamically -->
         </div>
     </section>
     <section id="about">
-        <h2>À propos</h2>
-        <h3 id="qui-nous-sommes">Qui nous sommes</h3>
-        <p>Nous sommes une entreprise spécialisée dans les solutions d’automatisme et d’instrumentation pour l’industrie. Nous offrons des services complets allant de la conception et la programmation à la mise en service, la maintenance, et la formation, en mettant l’accent sur l’innovation et la fiabilité.</p>
-        <h3 id="industries">Industries que nous servons</h3>
+        <h2>About</h2>
+        <h3 id="qui-nous-sommes">Who We Are</h3>
+        <p>We are a company specializing in automation and instrumentation solutions for industry. We offer comprehensive services ranging from design and programming to commissioning, maintenance, and training, with a focus on innovation and reliability.</p>
+        <h3 id="industries">Industries We Serve</h3>
         <div class="industries-grid">
             <div class="industry-card">
                 <i class="fas fa-oil-can" aria-hidden="true"></i>
-                <p>Pétrole et gaz</p>
+                <p>Oil and Gas</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-bolt" aria-hidden="true"></i>
-                <p>Énergie (électricité, renouvelables)</p>
+                <p>Energy (electricity, renewables)</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-car" aria-hidden="true"></i>
-                <p>Automobile</p>
+                <p>Automotive</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-utensils" aria-hidden="true"></i>
-                <p>Agroalimentaire</p>
+                <p>Agrofood</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-capsules" aria-hidden="true"></i>
-                <p>Pharmaceutique</p>
+                <p>Pharmaceutical</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-industry" aria-hidden="true"></i>
-                <p>Fabrication industrielle</p>
+                <p>Industrial Manufacturing</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-hammer" aria-hidden="true"></i>
-                <p>Industriel métallique</p>
+                <p>Metal Industry</p>
             </div>
             <div class="industry-card">
                 <i class="fas fa-robot" aria-hidden="true"></i>
-                <p>Robotique</p>
+                <p>Robotics</p>
             </div>
         </div>
     </section>
     <section id="contact">
         <h2>Contact</h2>
-        <p>Contactez-moi : <a href="mailto:ton.email@example.com" aria-label="Envoyer un email à AutoTech Solutions">ton.email@example.com</a></p>
-        <p>Téléphone : <a href="tel:+336XXXXXXXX" aria-label="Appeler AutoTech Solutions au +33 6 XX XX XX XX">+33 6 XX XX XX XX</a></p>
-        <p>Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank" aria-label="Visiter le profil LinkedIn d'AutoTech Solutions">LinkedIn</a></p>
+        <p>Contact me: <a href="mailto:your.email@example.com" aria-label="Send an email to AutoTech Solutions">your.email@example.com</a></p>
+        <p>Phone: <a href="tel:+336XXXXXXXX" aria-label="Call AutoTech Solutions at +33 6 XX XX XX XX">+33 6 XX XX XX XX</a></p>
+        <p>Or via <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="Visit AutoTech Solutions’ LinkedIn profile">LinkedIn</a></p>
     </section>
     <footer>
         <p>© 2025 - AutoTech Solutions</p>
@@ -560,112 +596,239 @@
     <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
         <h4 id="modal-title"></h4>
         <p id="modal-content"></p>
-        <button class="modal-close" aria-label="Fermer la modale">&times;</button>
+        <button class="modal-close" aria-label="Close the modal">×</button>
     </div>
     <script>
-        // Données des sous-services
+        // Données des sous-services (en anglais)
         const subServicesData = {
             'etude-solution': [
                 {
                     icon: 'fas fa-drafting-compass',
-                    title: 'Conception Électrique & Schémas',
-                    description: 'Études techniques, conception de panneaux + schémas électriques conformes aux normes industrielles.',
-                    details: 'Analyse des besoins, création de schémas détaillés avec logiciels comme AutoCAD, conformité aux normes IEC, et validation avec le client.'
+                    title: 'Electrical Design & Schematics',
+                    description: 'Technical studies, panel design + electrical schematics compliant with industry standards.',
+                    details: 'Needs analysis, detailed schematics creation with software like AutoCAD, IEC standards compliance, and client validation.'
                 },
                 {
                     icon: 'fas fa-code',
-                    title: 'Programmation & Intégration',
-                    description: 'Développement de systèmes automatisés (PLC, SCADA, DCS...), logique de contrôle et intégration des équipements de terrain.',
-                    details: 'Programmation sur Siemens, Rockwell, ou Schneider, intégration de capteurs et actionneurs, tests de logique de contrôle, et mise en œuvre de protocoles comme Modbus ou OPC.'
+                    title: 'Programming & Integration',
+                    description: 'Development of automated systems (PLC, SCADA, DCS...), control logic, and field equipment integration.',
+                    details: 'Programming on Siemens, Rockwell, or Schneider, integration of sensors and actuators, control logic testing, and implementation of protocols like Modbus or OPC.'
                 },
                 {
                     icon: 'fas fa-chart-line',
-                    title: 'Optimisation & Documentation',
-                    description: 'Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.',
-                    details: 'Ajustement des boucles PID, optimisation des temps de cycle, rédaction de manuels techniques détaillés, et plans de câblage pour une maintenance simplifiée.'
+                    title: 'Optimization & Documentation',
+                    description: 'Performance optimization (PID, logic), cable layouts, and technical documentation development.',
+                    details: 'PID loop tuning, cycle time optimization, detailed technical manuals, and wiring plans for simplified maintenance.'
                 }
             ],
             'fournitures': [
                 {
                     icon: 'fas fa-boxes',
-                    title: 'Fourniture de matériel et de logiciels',
-                    description: 'Approvisionnement en automates programmables (PLC), logiciels SCADA, et composants industriels conformes aux normes IEC 61131-3.',
-                    details: 'Sélection de matériel auprès de fournisseurs certifiés (Siemens, Rockwell), livraison rapide, et compatibilité garantie avec vos systèmes existants.'
+                    title: 'Supply of Equipment and Software',
+                    description: 'Supply of programmable logic controllers (PLC), SCADA software, and industrial components compliant with IEC 61131-3 standards.',
+                    details: 'Selection of equipment from certified suppliers (Siemens, Rockwell), fast delivery, and guaranteed compatibility with your existing systems.'
                 },
                 {
                     icon: 'fas fa-charging-station',
-                    title: 'Fourniture de panneaux selon les normes',
-                    description: 'Livraison de panneaux électriques certifiés pour applications industrielles, respectant les normes de sécurité et de qualité.',
-                    details: 'Panneaux assemblés sur mesure, certifiés IP65, avec tests de conformité avant livraison, et documentation complète.'
+                    title: 'Supply of Panels According to Standards',
+                    description: 'Delivery of certified electrical panels for industrial applications, meeting safety and quality standards.',
+                    details: 'Custom-assembled panels, IP65 certified, with compliance testing before delivery, and full documentation.'
                 },
                 {
                     icon: 'fas fa-tachometer-alt',
-                    title: 'Fourniture d’instruments de processus',
-                    description: 'Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.',
-                    details: 'Fourniture de capteurs de pression, température et débit, transmetteurs 4-20mA, et actionneurs pneumatiques ou électriques.'
+                    title: 'Supply of Process Instruments',
+                    description: 'Sensors, transmitters, and actuators for industrial process measurement and control.',
+                    details: 'Supply of pressure, temperature, and flow sensors, 4-20mA transmitters, and pneumatic or electric actuators.'
                 }
             ],
             'installation': [
                 {
                     icon: 'fas fa-plug',
                     title: 'Installation & Supervision',
-                    description: 'Mise en place, essais et supervision des panneaux, équipements, et câblage selon les normes.',
-                    details: 'Installation sur site, supervision des équipes, vérification des connexions, et tests fonctionnels pour garantir une mise en service sans faille.'
+                    description: 'Setup, testing, and supervision of panels, equipment, and wiring according to standards.',
+                    details: 'On-site installation, team supervision, connection verification, and functional testing to ensure flawless commissioning.'
                 },
                 {
                     icon: 'fas fa-robot',
-                    title: 'Mise en Service & Programmation',
-                    description: 'Programmation de robots, automates et systèmes, avec mise en service sur site ou à distance.',
-                    details: 'Configuration des robots industriels, programmation des automates pour des cycles spécifiques, et mise en service avec tests en temps réel.'
+                    title: 'Commissioning & Programming',
+                    description: 'Programming of robots, PLCs, and systems, with on-site or remote commissioning.',
+                    details: 'Configuration of industrial robots, PLC programming for specific cycles, and commissioning with real-time testing.'
                 },
                 {
                     icon: 'fas fa-shield-alt',
-                    title: 'Sécurité & Conformité Électrique',
-                    description: 'Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.',
-                    details: 'Tests de sécurité électrique, vérification des signaux 4-20mA, conformité aux normes IEC, et rapport de mise en service.'
+                    title: 'Safety & Electrical Compliance',
+                    description: 'Instrument calibration, signal integrity, electrical safety, and compliance with industrial standards.',
+                    details: 'Electrical safety testing, 4-20mA signal verification, IEC standards compliance, and commissioning report.'
                 }
             ],
             'formation': [
                 {
                     icon: 'fas fa-chalkboard-teacher',
-                    title: 'Formation de base pour les opérateurs',
-                    description: 'Cours pratiques pour les opérateurs sur l’utilisation des automates et interfaces HMI.',
-                    details: 'Ateliers pratiques sur l’utilisation des interfaces HMI, gestion des alarmes, et dépannage de base sur automates Siemens ou Schneider.'
+                    title: 'Basic Training for Operators',
+                    description: 'Practical courses for operators on the use of PLCs and HMI interfaces.',
+                    details: 'Practical workshops on HMI interface usage, alarm management, and basic troubleshooting on Siemens or Schneider PLCs.'
                 },
                 {
                     icon: 'fas fa-graduation-cap',
-                    title: 'Formation professionnelle spécialisée',
-                    description: 'Programmes avancés pour ingénieurs sur la programmation PLC, SCADA et maintenance.',
-                    details: 'Cours approfondis sur la programmation IEC 61131-3, configuration SCADA, et stratégies de maintenance préventive.'
+                    title: 'Specialized Professional Training',
+                    description: 'Advanced programs for engineers on PLC programming, SCADA, and maintenance.',
+                    details: 'In-depth courses on IEC 61131-3 programming, SCADA configuration, and preventive maintenance strategies.'
                 },
                 {
                     icon: 'fas fa-laptop-code',
-                    title: 'Formation en ligne / hors ligne',
-                    description: 'Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.',
-                    details: 'Modules interactifs en ligne avec vidéos et quiz, ou sessions en présentiel avec simulations sur matériel réel.'
+                    title: 'Online / Offline Training',
+                    description: 'Flexible automation and instrumentation training, available online or in-person.',
+                    details: 'Interactive online modules with videos and quizzes, or in-person sessions with real equipment simulations.'
                 }
             ],
             'maintenance': [
                 {
                     icon: 'fas fa-wrench',
-                    title: 'Maintenance des installations électriques industrielles',
-                    description: 'Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.',
-                    details: 'Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.'
+                    title: 'Maintenance of Industrial Electrical Installations',
+                    description: 'Preventive and corrective maintenance to ensure the reliability of industrial electrical systems.',
+                    details: 'Regular system inspections, fault diagnosis, replacement of defective components, and energy consumption optimization.'
                 },
                 {
                     icon: 'fas fa-tools',
-                    title: 'Calibrage de capteurs, transmetteurs et actionneurs',
-                    description: 'Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.',
-                    details: 'Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.'
+                    title: 'Calibration of Sensors, Transmitters, and Actuators',
+                    description: 'Precise calibration of instruments to ensure optimal performance in industrial processes.',
+                    details: 'On-site or workshop calibration, adjustment of pressure and temperature sensors, and verification of 4-20mA transmitters.'
                 },
                 {
                     icon: 'fas fa-cogs',
-                    title: 'Paramétrage d’instruments pour applications industrielles',
-                    description: 'Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.',
-                    details: 'Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.'
+                    title: 'Configuration of Instruments for Industrial Applications',
+                    description: 'Configuration of instruments to meet the specific requirements of industrial applications.',
+                    details: 'Configuration of instruments for specific applications like flow control or temperature regulation, with performance testing.'
                 }
             ]
         };
+
+        // Gestion de la langue
+        const lang = localStorage.getItem('language') || 'en';
+        const languageToggle = document.getElementById('language-toggle');
+
+        if (lang === 'fr') {
+            // Si la langue est le français, mettre à jour tout le contenu en français
+            document.documentElement.lang = 'fr';
+            document.title = 'AutoTech Solutions - Expert en Automatisme & Instrumentation';
+            document.querySelector('meta[name="description"]').setAttribute('content', 'Solutions en automatisme et instrumentation pour l’industrie : conception, fourniture, installation, formation et maintenance.');
+
+            // En-tête
+            document.querySelector('header h1').textContent = 'AutoTech Solutions';
+            document.querySelector('header p').textContent = 'Vos solutions pour l’industrie : fourniture, installation, formation, maintenance';
+            document.querySelector('header a').textContent = 'Découvrir mes services';
+            document.querySelector('header a').setAttribute('aria-label', 'Découvrir les services d’automatisme et d’instrumentation');
+
+            // Navigation
+            document.querySelector('nav').setAttribute('aria-label', 'Menu principal');
+            document.querySelector('nav a[href="#home"]').innerHTML = '<i class="fas fa-home" aria-hidden="true"></i> Accueil';
+            document.querySelector('nav a[href="#home"]').setAttribute('aria-label', 'Aller à la section Accueil');
+            document.querySelector('nav a[href="#services"]').innerHTML = '<i class="fas fa-tools" aria-hidden="true"></i> Services';
+            document.querySelector('nav a[href="#services"]').setAttribute('aria-label', 'Aller à la section Services');
+            document.querySelector('nav a[href="#about"]').innerHTML = '<i class="fas fa-user" aria-hidden="true"></i> À propos';
+            document.querySelector('nav a[href="#about"]').setAttribute('aria-label', 'Aller à la section À propos');
+            document.querySelector('nav a[href="#contact"]').innerHTML = '<i class="fas fa-envelope" aria-hidden="true"></i> Contact';
+            document.querySelector('nav a[href="#contact"]').setAttribute('aria-label', 'Aller à la section Contact');
+            document.querySelector('.dropdown-item[data-tab="etude-solution"]').textContent = 'Étude et Solution';
+            document.querySelector('.dropdown-item[data-tab="fournitures"]').textContent = 'Fournitures et Matériel';
+            document.querySelector('.dropdown-item[data-tab="installation"]').textContent = 'Installation, Tests et Mise en Service';
+            document.querySelector('.dropdown-item[data-tab="formation"]').textContent = 'Formation et Entraînement';
+            document.querySelector('.dropdown-item[data-tab="maintenance"]').textContent = 'Maintenance';
+            document.querySelector('a[href="#qui-nous-sommes"]').textContent = 'Qui nous sommes';
+            document.querySelector('a[href="#industries"]').textContent = 'Industries que nous servons';
+            languageToggle.textContent = 'English';
+            languageToggle.setAttribute('aria-label', 'Switch to English language');
+
+            // Section Home
+            document.querySelector('#home h2').textContent = 'Accueil';
+            document.querySelector('#home p').textContent = 'Ingénieur automaticien passionné, je propose des solutions complètes pour l’industrie : de la fourniture de matériel à la mise en service, en passant par la formation et la maintenance. Cliquez ci-dessous pour explorer mes services.';
+
+            // Section Services
+            document.querySelector('#services h2').textContent = 'Services';
+            document.querySelector('.service-card[data-tab="etude-solution"] h3').textContent = 'Étude et Solution';
+            document.querySelector('.service-card[data-tab="etude-solution"] p').textContent = 'Conception, programmation et optimisation.';
+            document.querySelector('.service-card[data-tab="fournitures"] h3').textContent = 'Fournitures et Matériel';
+            document.querySelector('.service-card[data-tab="fournitures"] p').textContent = 'Équipements et logiciels industriels.';
+            document.querySelector('.service-card[data-tab="installation"] h3').textContent = 'Installation et Mise en Service';
+            document.querySelector('.service-card[data-tab="installation"] p').textContent = 'Mise en place et validation.';
+            document.querySelector('.service-card[data-tab="formation"] h3').textContent = 'Formation et Entraînement';
+            document.querySelector('.service-card[data-tab="formation"] p').textContent = 'Formations pour opérateurs et ingénieurs.';
+            document.querySelector('.service-card[data-tab="maintenance"] h3').textContent = 'Maintenance';
+            document.querySelector('.service-card[data-tab="maintenance"] p').textContent = 'Entretien et calibrage.';
+
+            // Section About
+            document.querySelector('#about h2').textContent = 'À propos';
+            document.querySelector('#qui-nous-sommes').textContent = 'Qui nous sommes';
+            document.querySelector('#about p').textContent = 'Nous sommes une entreprise spécialisée dans les solutions d’automatisme et d’instrumentation pour l’industrie. Nous offrons des services complets allant de la conception et la programmation à la mise en service, la maintenance, et la formation, en mettant l’accent sur l’innovation et la fiabilité.';
+            document.querySelector('#industries').textContent = 'Industries que nous servons';
+            document.querySelectorAll('.industry-card p')[0].textContent = 'Pétrole et gaz';
+            document.querySelectorAll('.industry-card p')[1].textContent = 'Énergie (électricité, renouvelables)';
+            document.querySelectorAll('.industry-card p')[2].textContent = 'Automobile';
+            document.querySelectorAll('.industry-card p')[3].textContent = 'Agroalimentaire';
+            document.querySelectorAll('.industry-card p')[4].textContent = 'Pharmaceutique';
+            document.querySelectorAll('.industry-card p')[5].textContent = 'Fabrication industrielle';
+            document.querySelectorAll('.industry-card p')[6].textContent = 'Industriel métallique';
+            document.querySelectorAll('.industry-card p')[7].textContent = 'Robotique';
+
+            // Section Contact
+            document.querySelector('#contact h2').textContent = 'Contact';
+            document.querySelector('#contact p:nth-child(2)').innerHTML = 'Contactez-moi : <a href="mailto:ton.email@example.com" aria-label="Envoyer un email à AutoTech Solutions">ton.email@example.com</a>';
+            document.querySelector('#contact p:nth-child(3)').innerHTML = 'Téléphone : <a href="tel:+336XXXXXXXX" aria-label="Appeler AutoTech Solutions au +33 6 XX XX XX XX">+33 6 XX XX XX XX</a>';
+            document.querySelector('#contact p:nth-child(4)').innerHTML = 'Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank" aria-label="Visiter le profil LinkedIn d’AutoTech Solutions">LinkedIn</a>';
+
+            // Footer
+            document.querySelector('footer p').textContent = '© 2025 - AutoTech Solutions';
+
+            // Modale
+            document.querySelector('.modal-close').setAttribute('aria-label', 'Fermer la modale');
+
+            // Mettre à jour les sous-services en français
+            subServicesData['etude-solution'] = [
+                { icon: 'fas fa-drafting-compass', title: 'Conception Électrique & Schémas', description: 'Études techniques, conception de panneaux + schémas électriques conformes aux normes industrielles.', details: 'Analyse des besoins, création de schémas détaillés avec logiciels comme AutoCAD, conformité aux normes IEC, et validation avec le client.' },
+                { icon: 'fas fa-code', title: 'Programmation & Intégration', description: 'Développement de systèmes automatisés (PLC, SCADA, DCS...), logique de contrôle et intégration des équipements de terrain.', details: 'Programmation sur Siemens, Rockwell, ou Schneider, intégration de capteurs et actionneurs, tests de logique de contrôle, et mise en œuvre de protocoles comme Modbus ou OPC.' },
+                { icon: 'fas fa-chart-line', title: 'Optimisation & Documentation', description: 'Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.', details: 'Ajustement des boucles PID, optimisation des temps de cycle, rédaction de manuels techniques détaillés, et plans de câblage pour une maintenance simplifiée.' }
+            ];
+            subServicesData['fournitures'] = [
+                { icon: 'fas fa-boxes', title: 'Fourniture de matériel et de logiciels', description: 'Approvisionnement en automates programmables (PLC), logiciels SCADA, et composants industriels conformes aux normes IEC 61131-3.', details: 'Sélection de matériel auprès de fournisseurs certifiés (Siemens, Rockwell), livraison rapide, et compatibilité garantie avec vos systèmes existants.' },
+                { icon: 'fas fa-charging-station', title: 'Fourniture de panneaux selon les normes', description: 'Livraison de panneaux électriques certifiés pour applications industrielles, respectant les normes de sécurité et de qualité.', details: 'Panneaux assemblés sur mesure, certifiés IP65, avec tests de conformité avant livraison, et documentation complète.' },
+                { icon: 'fas fa-tachometer-alt', title: 'Fourniture d’instruments de processus', description: 'Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.', details: 'Fourniture de capteurs de pression, température et débit, transmetteurs 4-20mA, et actionneurs pneumatiques ou électriques.' }
+            ];
+            subServicesData['installation'] = [
+                { icon: 'fas fa-plug', title: 'Installation & Supervision', description: 'Mise en place, essais et supervision des panneaux, équipements, et câblage selon les normes.', details: 'Installation sur site, supervision des équipes, vérification des connexions, et tests fonctionnels pour garantir une mise en service sans faille.' },
+                { icon: 'fas fa-robot', title: 'Mise en Service & Programmation', description: 'Programmation de robots, automates et systèmes, avec mise en service sur site ou à distance.', details: 'Configuration des robots industriels, programmation des automates pour des cycles spécifiques, et mise en service avec tests en temps réel.' },
+                { icon: 'fas fa-shield-alt', title: 'Sécurité & Conformité Électrique', description: 'Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.', details: 'Tests de sécurité électrique, vérification des signaux 4-20mA, conformité aux normes IEC, et rapport de mise en service.' }
+            ];
+            subServicesData['formation'] = [
+                { icon: 'fas fa-chalkboard-teacher', title: 'Formation de base pour les opérateurs', description: 'Cours pratiques pour les opérateurs sur l’utilisation des automates et interfaces HMI.', details: 'Ateliers pratiques sur l’utilisation des interfaces HMI, gestion des alarmes, et dépannage de base sur automates Siemens ou Schneider.' },
+                { icon: 'fas fa-graduation-cap', title: 'Formation professionnelle spécialisée', description: 'Programmes avancés pour ingénieurs sur la programmation PLC, SCADA et maintenance.', details: 'Cours approfondis sur la programmation IEC 61131-3, configuration SCADA, et stratégies de maintenance préventive.' },
+                { icon: 'fas fa-laptop-code', title: 'Formation en ligne / hors ligne', description: 'Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.', details: 'Modules interactifs en ligne avec vidéos et quiz, ou sessions en présentiel avec simulations sur matériel réel.' }
+            ];
+            subServicesData['maintenance'] = [
+                { icon: 'fas fa-wrench', title: 'Maintenance des installations électriques industrielles', description: 'Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.', details: 'Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.' },
+                { icon: 'fas fa-tools', title: 'Calibrage de capteurs, transmetteurs et actionneurs', description: 'Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.', details: 'Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.' },
+                { icon: 'fas fa-cogs', title: 'Paramétrage d’instruments pour applications industrielles', description: 'Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.', details: 'Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.' }
+            ];
+        }
+
+        // Restaurer la position de défilement après rechargement
+        window.addEventListener('load', () => {
+            const savedScrollPosition = localStorage.getItem('scrollPosition');
+            if (savedScrollPosition) {
+                window.scrollTo(0, parseInt(savedScrollPosition));
+                localStorage.removeItem('scrollPosition'); // Nettoyer après restauration
+            }
+        });
+
+        // Gestion du bouton de permutation de langue
+        languageToggle.addEventListener('click', () => {
+            // Sauvegarder la position de défilement avant de recharger
+            localStorage.setItem('scrollPosition', window.scrollY);
+
+            // Changer la langue
+            const newLang = lang === 'en' ? 'fr' : 'en';
+            localStorage.setItem('language', newLang);
+            location.reload();
+        });
 
         // Navigation dynamique
         window.addEventListener('scroll', () => {
