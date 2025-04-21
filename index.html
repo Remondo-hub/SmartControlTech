@@ -91,11 +91,11 @@
             background: #FF8C00;
         }
         .dropdown-item.active {
-            color: #FF8C00;
+            color: #28A745; /* Changé en vert */
         }
         .dropdown-item.active::after {
             width: 100%;
-            background: #FF8C00;
+            background: #28A745; /* Changé en vert */
         }
         .nav-item:hover .dropdown { display: block; }
         section {
@@ -129,6 +129,27 @@
             transform: translateY(-5px);
             color: #FFC300;
         }
+        .selected-service-container {
+            display: none;
+            flex-direction: column;
+            gap: 1.5em; /* Augmenté pour plus d'espace */
+            margin-top: 2em;
+            width: 100%;
+            max-width: 1000px;
+            align-items: center;
+        }
+        .selected-service-container.active {
+            display: flex;
+        }
+        .selected-service-container .service-card {
+            width: 100%;
+            max-width: 700px;
+        }
+        .selected-service-container .services-content {
+            width: 100%;
+            opacity: 1;
+            transform: translateY(0);
+        }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -142,10 +163,11 @@
             border-radius: 8px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s, background 0.3s;
+            transition: transform 0.3s, background 0.3s, width 0.3s ease;
             animation: fadeInUp 0.5s ease-out;
             animation-fill-mode: both;
             cursor: pointer;
+            width: 100%;
         }
         .service-card i {
             font-size: 1.5em;
@@ -191,6 +213,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            padding: 1em 0;
         }
         .services-content.active {
             display: block;
@@ -198,18 +221,23 @@
             transform: translateY(0);
         }
         .services-content .services-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 1em;
             max-width: none;
-            margin-top: 2em;
-            margin-bottom: 2em;
+            margin: 0;
+            padding: 0.5em 0;
         }
-        .selected-service {
-            color: #FFC300;
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 1em;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out;
+        .services-content .services-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        .services-content .services-grid::-webkit-scrollbar-thumb {
+            background: #00B2FF;
+            border-radius: 4px;
+        }
+        .services-content .services-grid::-webkit-scrollbar-track {
+            background: #F5F5F5;
         }
         .service {
             background: #FFFFFF;
@@ -221,6 +249,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             animation: slideUp 0.5s ease-out;
             cursor: pointer;
+            flex: 0 0 250px;
         }
         .service:hover {
             transform: scale(1.05);
@@ -347,10 +376,6 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         @keyframes slideUp {
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -371,6 +396,8 @@
             .services-grid { grid-template-columns: 1fr; max-width: 100%; }
             .service-card { width: 80%; margin: 0 auto; }
             .last-card { grid-column: auto; width: 80%; }
+            .services-content .services-grid { padding: 0.5em; }
+            .service { flex: 0 0 200px; }
             .industries-grid { grid-template-columns: repeat(2, 1fr); }
             #services {
                 min-height: auto;
@@ -421,7 +448,7 @@
     </section>
     <section id="services">
         <h2>Services</h2>
-        <div class="services-grid">
+        <div class="services-grid" id="services-grid">
             <div class="service-card active" data-tab="etude-solution">
                 <i class="fas fa-hammer"></i>
                 <h3>Étude et Solution</h3>
@@ -448,105 +475,8 @@
                 <p>Entretien et calibrage.</p>
             </div>
         </div>
-        <div class="services-content active" id="etude-solution">
-            <div class="services-grid">
-                <div class="service" data-details="Analyse des besoins, création de schémas détaillés avec logiciels comme AutoCAD, conformité aux normes IEC, et validation avec le client.">
-                    <i class="fas fa-drafting-compass"></i>
-                    <h3>Conception Électrique & Schémas</h3>
-                    <p>Études techniques, conception de panneaux + schémas électriques conformes aux normes industrielles.</p>
-                </div>
-                <div class="service" data-details="Programmation sur Siemens, Rockwell, ou Schneider, intégration de capteurs et actionneurs, tests de logique de contrôle, et mise en œuvre de protocoles comme Modbus ou OPC.">
-                    <i class="fas fa-code"></i>
-                    <h3>Programmation & Intégration</h3>
-                    <p>Développement de systèmes automatisés (PLC, SCADA, DCS...), logique de contrôle et intégration des équipements de terrain.</p>
-                </div>
-                <div class="service" data-details="Ajustement des boucles PID, optimisation des temps de cycle, rédaction de manuels techniques détaillés, et plans de câblage pour une maintenance simplifiée.">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Optimisation & Documentation</h3>
-                    <p>Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.</p>
-                </div>
-            </div>
-            <div class="selected-service">Service sélectionné : Étude et Solution</div>
-        </div>
-        <div class="services-content" id="fournitures">
-            <div class="services-grid">
-                <div class="service" data-details="Sélection de matériel auprès de fournisseurs certifiés (Siemens, Rockwell), livraison rapide, et compatibilité garantie avec vos systèmes existants.">
-                    <i class="fas fa-boxes"></i>
-                    <h3>Fourniture de matériel et de logiciels</h3>
-                    <p>Approvisionnement en automates programmables (PLC), logiciels SCADA, et composants industriels conformes aux normes IEC 61131-3.</p>
-                </div>
-                <div class="service" data-details="Panneaux assemblés sur mesure, certifiés IP65, avec tests de conformité avant livraison, et documentation complète.">
-                    <i class="fas fa-charging-station"></i>
-                    <h3>Fourniture de panneaux selon les normes</h3>
-                    <p>Livraison de panneaux électriques certifiés pour applications industrielles, respectant les normes de sécurité et de qualité.</p>
-                </div>
-                <div class="service" data-details="Fourniture de capteurs de pression, température et débit, transmetteurs 4-20mA, et actionneurs pneumatiques ou électriques.">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Fourniture d’instruments de processus</h3>
-                    <p>Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.</p>
-                </div>
-            </div>
-            <div class="selected-service">Service sélectionné : Fournitures et Matériel</div>
-        </div>
-        <div class="services-content" id="installation">
-            <div class="services-grid">
-                <div class="service" data-details="Installation sur site, supervision des équipes, vérification des connexions, et tests fonctionnels pour garantir une mise en service sans faille.">
-                    <i class="fas fa-plug"></i>
-                    <h3>Installation & Supervision</h3>
-                    <p>Mise en place, essais et supervision des panneaux, équipements, et câblage selon les normes.</p>
-                </div>
-                <div class="service" data-details="Configuration des robots industriels, programmation des automates pour des cycles spécifiques, et mise en service avec tests en temps réel.">
-                    <i class="fas fa-robot"></i>
-                    <h3>Mise en Service & Programmation</h3>
-                    <p>Programmation de robots, automates et systèmes, avec mise en service sur site ou à distance.</p>
-                </div>
-                <div class="service" data-details="Tests de sécurité électrique, vérification des signaux 4-20mA, conformité aux normes IEC, et rapport de mise en service.">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Sécurité & Conformité Électrique</h3>
-                    <p>Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.</p>
-                </div>
-            </div>
-            <div class="selected-service">Service sélectionné : Installation et Mise en Service</div>
-        </div>
-        <div class="services-content" id="formation">
-            <div class="services-grid">
-                <div class="service" data-details="Ateliers pratiques sur l’utilisation des interfaces HMI, gestion des alarmes, et dépannage de base sur automates Siemens ou Schneider.">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Formation de base pour les opérateurs</h3>
-                    <p>Cours pratiques pour les opérateurs sur l’utilisation des automates et interfaces HMI.</p>
-                </div>
-                <div class="service" data-details="Cours approfondis sur la programmation IEC 61131-3, configuration SCADA, et stratégies de maintenance préventive.">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Formation professionnelle spécialisée</h3>
-                    <p>Programmes avancés pour ingénieurs sur la programmation PLC, SCADA et maintenance.</p>
-                </div>
-                <div class="service" data-details="Modules interactifs en ligne avec vidéos et quiz, ou sessions en présentiel avec simulations sur matériel réel.">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Formation en ligne / hors ligne</h3>
-                    <p>Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.</p>
-                </div>
-            </div>
-            <div class="selected-service">Service sélectionné : Formation et Entraînement</div>
-        </div>
-        <div class="services-content" id="maintenance">
-            <div class="services-grid">
-                <div class="service" data-details="Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.">
-                    <i class="fas fa-wrench"></i>
-                    <h3>Maintenance des installations électriques industrielles</h3>
-                    <p>Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.</p>
-                </div>
-                <div class="service" data-details="Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.">
-                    <i class="fas fa-tools"></i>
-                    <h3>Calibrage de capteurs, transmetteurs et actionneurs</h3>
-                    <p>Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.</p>
-                </div>
-                <div class="service" data-details="Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Paramétrage d’instruments pour applications industrielles</h3>
-                    <p>Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.</p>
-                </div>
-            </div>
-            <div class="selected-service">Service sélectionné : Maintenance</div>
+        <div class="selected-service-container" id="selected-service-container">
+            <!-- La carte sélectionnée et ses sous-services seront insérés ici dynamiquement -->
         </div>
     </section>
     <section id="about">
@@ -604,6 +534,110 @@
         <p id="modal-content"></p>
     </div>
     <script>
+        // Données des sous-services
+        const subServicesData = {
+            'etude-solution': [
+                {
+                    icon: 'fas fa-drafting-compass',
+                    title: 'Conception Électrique & Schémas',
+                    description: 'Études techniques, conception de panneaux + schémas électriques conformes aux normes industrielles.',
+                    details: 'Analyse des besoins, création de schémas détaillés avec logiciels comme AutoCAD, conformité aux normes IEC, et validation avec le client.'
+                },
+                {
+                    icon: 'fas fa-code',
+                    title: 'Programmation & Intégration',
+                    description: 'Développement de systèmes automatisés (PLC, SCADA, DCS...), logique de contrôle et intégration des équipements de terrain.',
+                    details: 'Programmation sur Siemens, Rockwell, ou Schneider, intégration de capteurs et actionneurs, tests de logique de contrôle, et mise en œuvre de protocoles comme Modbus ou OPC.'
+                },
+                {
+                    icon: 'fas fa-chart-line',
+                    title: 'Optimisation & Documentation',
+                    description: 'Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.',
+                    details: 'Ajustement des boucles PID, optimisation des temps de cycle, rédaction de manuels techniques détaillés, et plans de câblage pour une maintenance simplifiée.'
+                }
+            ],
+            'fournitures': [
+                {
+                    icon: 'fas fa-boxes',
+                    title: 'Fourniture de matériel et de logiciels',
+                    description: 'Approvisionnement en automates programmables (PLC), logiciels SCADA, et composants industriels conformes aux normes IEC 61131-3.',
+                    details: 'Sélection de matériel auprès de fournisseurs certifiés (Siemens, Rockwell), livraison rapide, et compatibilité garantie avec vos systèmes existants.'
+                },
+                {
+                    icon: 'fas fa-charging-station',
+                    title: 'Fourniture de panneaux selon les normes',
+                    description: 'Livraison de panneaux électriques certifiés pour applications industrielles, respectant les normes de sécurité et de qualité.',
+                    details: 'Panneaux assemblés sur mesure, certifiés IP65, avec tests de conformité avant livraison, et documentation complète.'
+                },
+                {
+                    icon: 'fas fa-tachometer-alt',
+                    title: 'Fourniture d’instruments de processus',
+                    description: 'Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.',
+                    details: 'Fourniture de capteurs de pression, température et débit, transmetteurs 4-20mA, et actionneurs pneumatiques ou électriques.'
+                }
+            ],
+            'installation': [
+                {
+                    icon: 'fas fa-plug',
+                    title: 'Installation & Supervision',
+                    description: 'Mise en place, essais et supervision des panneaux, équipements, et câblage selon les normes.',
+                    details: 'Installation sur site, supervision des équipes, vérification des connexions, et tests fonctionnels pour garantir une mise en service sans faille.'
+                },
+                {
+                    icon: 'fas fa-robot',
+                    title: 'Mise en Service & Programmation',
+                    description: 'Programmation de robots, automates et systèmes, avec mise en service sur site ou à distance.',
+                    details: 'Configuration des robots industriels, programmation des automates pour des cycles spécifiques, et mise en service avec tests en temps réel.'
+                },
+                {
+                    icon: 'fas fa-shield-alt',
+                    title: 'Sécurité & Conformité Électrique',
+                    description: 'Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.',
+                    details: 'Tests de sécurité électrique, vérification des signaux 4-20mA, conformité aux normes IEC, et rapport de mise en service.'
+                }
+            ],
+            'formation': [
+                {
+                    icon: 'fas fa-chalkboard-teacher',
+                    title: 'Formation de base pour les opérateurs',
+                    description: 'Cours pratiques pour les opérateurs sur l’utilisation des automates et interfaces HMI.',
+                    details: 'Ateliers pratiques sur l’utilisation des interfaces HMI, gestion des alarmes, et dépannage de base sur automates Siemens ou Schneider.'
+                },
+                {
+                    icon: 'fas fa-graduation-cap',
+                    title: 'Formation professionnelle spécialisée',
+                    description: 'Programmes avancés pour ingénieurs sur la programmation PLC, SCADA et maintenance.',
+                    details: 'Cours approfondis sur la programmation IEC 61131-3, configuration SCADA, et stratégies de maintenance préventive.'
+                },
+                {
+                    icon: 'fas fa-laptop-code',
+                    title: 'Formation en ligne / hors ligne',
+                    description: 'Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.',
+                    details: 'Modules interactifs en ligne avec vidéos et quiz, ou sessions en présentiel avec simulations sur matériel réel.'
+                }
+            ],
+            'maintenance': [
+                {
+                    icon: 'fas fa-wrench',
+                    title: 'Maintenance des installations électriques industrielles',
+                    description: 'Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.',
+                    details: 'Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.'
+                },
+                {
+                    icon: 'fas fa-tools',
+                    title: 'Calibrage de capteurs, transmetteurs et actionneurs',
+                    description: 'Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.',
+                    details: 'Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.'
+                },
+                {
+                    icon: 'fas fa-cogs',
+                    title: 'Paramétrage d’instruments pour applications industrielles',
+                    description: 'Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.',
+                    details: 'Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.'
+                }
+            ]
+        };
+
         // Navigation dynamique
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
@@ -612,26 +646,61 @@
 
         // Onglets services (cartes)
         const serviceCards = document.querySelectorAll('.service-card');
-        const serviceContents = document.querySelectorAll('.services-content');
         const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const selectedServiceContainer = document.getElementById('selected-service-container');
+
+        function updateServiceDisplay(selectedCard) {
+            // Réinitialiser les classes actives
+            serviceCards.forEach(c => c.classList.remove('active'));
+            dropdownItems.forEach(item => item.classList.remove('active'));
+
+            // Activer la carte sélectionnée
+            selectedCard.classList.add('active');
+
+            // Mettre à jour selected-service-container
+            selectedServiceContainer.innerHTML = '';
+            selectedServiceContainer.classList.add('active');
+            const selectedCardClone = selectedCard.cloneNode(true);
+            selectedCardClone.classList.add('active');
+            selectedServiceContainer.appendChild(selectedCardClone);
+
+            // Ajouter les sous-services dynamiquement
+            const tab = selectedCard.dataset.tab;
+            const subServices = subServicesData[tab];
+            if (subServices) {
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('services-content', 'active');
+                const gridDiv = document.createElement('div');
+                gridDiv.classList.add('services-grid');
+                subServices.forEach(service => {
+                    const serviceDiv = document.createElement('div');
+                    serviceDiv.classList.add('service');
+                    serviceDiv.dataset.details = service.details;
+                    serviceDiv.innerHTML = `
+                        <i class="${service.icon}"></i>
+                        <h3>${service.title}</h3>
+                        <p>${service.description}</p>
+                    `;
+                    gridDiv.appendChild(serviceDiv);
+                });
+                contentDiv.appendChild(gridDiv);
+                selectedServiceContainer.appendChild(contentDiv);
+            }
+
+            // Activer le lien correspondant dans la barre de navigation
+            const activeTab = selectedCard.dataset.tab;
+            const correspondingDropdownItem = document.querySelector(`.dropdown-item[data-tab="${activeTab}"]`);
+            if (correspondingDropdownItem) {
+                correspondingDropdownItem.classList.add('active');
+            }
+
+            // Ajouter les écouteurs pour la modale après la création des sous-services
+            addModalListeners();
+        }
 
         serviceCards.forEach(card => {
             card.addEventListener('click', () => {
-                // Réinitialiser les classes actives
-                serviceCards.forEach(c => c.classList.remove('active'));
-                serviceContents.forEach(content => content.classList.remove('active'));
-                dropdownItems.forEach(item => item.classList.remove('active'));
-
-                // Activer la carte et le contenu correspondants
-                card.classList.add('active');
-                document.getElementById(card.dataset.tab).classList.add('active');
-
-                // Activer le lien correspondant dans la barre de navigation
-                const activeTab = card.dataset.tab;
-                const correspondingDropdownItem = document.querySelector(`.dropdown-item[data-tab="${activeTab}"]`);
-                if (correspondingDropdownItem) {
-                    correspondingDropdownItem.classList.add('active');
-                }
+                updateServiceDisplay(card);
             });
         });
 
@@ -641,18 +710,10 @@
                 e.preventDefault();
                 const tab = item.dataset.tab;
 
-                // Réinitialiser les classes actives
-                serviceCards.forEach(c => c.classList.remove('active'));
-                serviceContents.forEach(content => content.classList.remove('active'));
-                dropdownItems.forEach(i => i.classList.remove('active'));
-
-                // Activer la carte et le contenu correspondants
+                // Trouver la carte correspondante
                 const correspondingCard = document.querySelector(`.service-card[data-tab="${tab}"]`);
-                const correspondingContent = document.getElementById(tab);
-                if (correspondingCard && correspondingContent) {
-                    correspondingCard.classList.add('active');
-                    correspondingContent.classList.add('active');
-                    item.classList.add('active');
+                if (correspondingCard) {
+                    updateServiceDisplay(correspondingCard);
 
                     // Faire défiler jusqu'à la section Services
                     document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
@@ -661,31 +722,37 @@
         });
 
         // Gestion de la modale pour les détails des sous-services
-        const services = document.querySelectorAll('.service');
-        const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalContent = document.getElementById('modal-content');
-        const overlay = document.getElementById('overlay');
+        function addModalListeners() {
+            const services = document.querySelectorAll('.service');
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const overlay = document.getElementById('overlay');
 
-        services.forEach(service => {
-            service.addEventListener('click', () => {
-                // Remplir la modale avec les détails
-                const title = service.querySelector('h3').textContent;
-                const details = service.dataset.details;
-                modalTitle.textContent = title;
-                modalContent.textContent = details;
+            services.forEach(service => {
+                service.addEventListener('click', () => {
+                    // Remplir la modale avec les détails
+                    const title = service.querySelector('h3').textContent;
+                    const details = service.dataset.details;
+                    modalTitle.textContent = title;
+                    modalContent.textContent = details;
 
-                // Afficher la modale et l'overlay
-                modal.classList.add('active');
-                overlay.classList.add('active');
+                    // Afficher la modale et l'overlay
+                    modal.classList.add('active');
+                    overlay.classList.add('active');
+                });
             });
-        });
 
-        // Fermer la modale en cliquant sur l'overlay
-        overlay.addEventListener('click', () => {
-            modal.classList.remove('active');
-            overlay.classList.remove('active');
-        });
+            // Fermer la modale en cliquant sur l'overlay
+            overlay.addEventListener('click', () => {
+                modal.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+        // Appeler updateServiceDisplay pour l'état initial (Étude et Solution est actif par défaut)
+        const initialCard = document.querySelector('.service-card.active');
+        updateServiceDisplay(initialCard);
     </script>
 </body>
 </html>
