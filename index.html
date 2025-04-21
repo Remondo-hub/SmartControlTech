@@ -91,11 +91,11 @@
             background: #FF8C00;
         }
         .dropdown-item.active {
-            color: #28A745; /* Changé en vert */
+            color: #28A745;
         }
         .dropdown-item.active::after {
             width: 100%;
-            background: #28A745; /* Changé en vert */
+            background: #28A745;
         }
         .nav-item:hover .dropdown { display: block; }
         section {
@@ -132,7 +132,7 @@
         .selected-service-container {
             display: none;
             flex-direction: column;
-            gap: 1.5em; /* Augmenté pour plus d'espace */
+            gap: 1.5em;
             margin-top: 2em;
             width: 100%;
             max-width: 1000px;
@@ -223,6 +223,7 @@
         .services-content .services-grid {
             display: flex;
             flex-direction: row;
+            justify-content: center; /* Centrer les sous-services */
             overflow-x: auto;
             gap: 1em;
             max-width: none;
@@ -715,8 +716,8 @@
                 if (correspondingCard) {
                     updateServiceDisplay(correspondingCard);
 
-                    // Faire défiler jusqu'à la section Services
-                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+                    // Faire défiler jusqu'à selected-service-container
+                    document.querySelector('#selected-service-container').scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
