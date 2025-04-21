@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio d'Ingénieur Automaticien</title>
+    <meta name="description" content="Solutions en automatisme et instrumentation pour l’industrie : conception, fourniture, installation, formation et maintenance.">
+    <meta name="keywords" content="automatisme, instrumentation, PLC, SCADA, IEC 61131, maintenance, formation, industrie">
+    <meta name="author" content="AutoTech Solutions">
+    <title>AutoTech Solutions - Expert en Automatisme & Instrumentation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,6 +83,8 @@
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        .nav-item:hover .dropdown { display: block; }
+        .nav-item[aria-expanded="true"] .dropdown { display: block; }
         .dropdown a {
             display: block;
             padding: 0.5em 1em;
@@ -97,7 +102,6 @@
             width: 100%;
             background: #28A745;
         }
-        .nav-item:hover .dropdown { display: block; }
         section {
             padding: 2em;
             max-width: 1000px;
@@ -168,6 +172,10 @@
             animation-fill-mode: both;
             cursor: pointer;
             width: 100%;
+        }
+        .service-card:focus {
+            outline: 2px solid #00B2FF;
+            outline-offset: 2px;
         }
         .service-card i {
             font-size: 1.5em;
@@ -252,6 +260,10 @@
             cursor: pointer;
             flex: 0 0 250px;
         }
+        .service:focus {
+            outline: 2px solid #00B2FF;
+            outline-offset: 2px;
+        }
         .service:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(255,195,0,0.3);
@@ -297,6 +309,20 @@
         .modal p {
             color: #333333;
             font-size: 0.9em;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #0A1F44;
+        }
+        .modal-close:focus {
+            outline: 2px solid #00B2FF;
+            outline-offset: 2px;
         }
         .overlay {
             display: none;
@@ -393,6 +419,7 @@
                 width: 100%;
             }
             .nav-item:hover .dropdown { display: block; }
+            .nav-item[aria-expanded="true"] .dropdown { display: block; }
             .dropdown a { padding: 0.5em 1em; }
             .services-grid { grid-template-columns: 1fr; max-width: 100%; }
             .service-card { width: 80%; margin: 0 auto; }
@@ -414,16 +441,16 @@
 </head>
 <body>
     <header>
-        <h1>Expert en Automatisme & Instrumentation</h1>
+        <h1>AutoTech Solutions</h1>
         <p>Vos solutions pour l’industrie : fourniture, installation, formation, maintenance</p>
-        <a href="#services">Découvrir mes services</a>
+        <a href="#services" aria-label="Découvrir les services d'automatisme et d'instrumentation">Découvrir mes services</a>
     </header>
-    <nav>
-        <div class="nav-item">
-            <a href="#home"><i class="fas fa-home"></i> Accueil</a>
+    <nav role="navigation" aria-label="Menu principal">
+        <div class="nav-item" aria-haspopup="true" aria-expanded="false">
+            <a href="#home" aria-label="Aller à la section Accueil"><i class="fas fa-home" aria-hidden="true"></i> Accueil</a>
         </div>
-        <div class="nav-item">
-            <a href="#services"><i class="fas fa-tools"></i> Services</a>
+        <div class="nav-item" aria-haspopup="true" aria-expanded="false">
+            <a href="#services" aria-label="Aller à la section Services"><i class="fas fa-tools" aria-hidden="true"></i> Services</a>
             <div class="dropdown">
                 <a href="#etude-solution" class="dropdown-item active" data-tab="etude-solution">Étude et Solution</a>
                 <a href="#fournitures" class="dropdown-item" data-tab="fournitures">Fournitures et Matériel</a>
@@ -432,15 +459,15 @@
                 <a href="#maintenance" class="dropdown-item" data-tab="maintenance">Maintenance</a>
             </div>
         </div>
-        <div class="nav-item">
-            <a href="#about"><i class="fas fa-user"></i> À propos</a>
+        <div class="nav-item" aria-haspopup="true" aria-expanded="false">
+            <a href="#about" aria-label="Aller à la section À propos"><i class="fas fa-user" aria-hidden="true"></i> À propos</a>
             <div class="dropdown">
                 <a href="#qui-nous-sommes">Qui nous sommes</a>
                 <a href="#industries">Industries que nous servons</a>
             </div>
         </div>
-        <div class="nav-item">
-            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="nav-item" aria-haspopup="true" aria-expanded="false">
+            <a href="#contact" aria-label="Aller à la section Contact"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
         </div>
     </nav>
     <section id="home">
@@ -450,28 +477,28 @@
     <section id="services">
         <h2>Services</h2>
         <div class="services-grid" id="services-grid">
-            <div class="service-card active" data-tab="etude-solution">
-                <i class="fas fa-hammer"></i>
+            <div class="service-card active" data-tab="etude-solution" role="button" tabindex="0">
+                <i class="fas fa-hammer" aria-hidden="true"></i>
                 <h3>Étude et Solution</h3>
                 <p>Conception, programmation et optimisation.</p>
             </div>
-            <div class="service-card" data-tab="fournitures">
-                <i class="fas fa-box"></i>
+            <div class="service-card" data-tab="fournitures" role="button" tabindex="0">
+                <i class="fas fa-box" aria-hidden="true"></i>
                 <h3>Fournitures et Matériel</h3>
                 <p>Équipements et logiciels industriels.</p>
             </div>
-            <div class="service-card" data-tab="installation">
-                <i class="fas fa-tools"></i>
+            <div class="service-card" data-tab="installation" role="button" tabindex="0">
+                <i class="fas fa-tools" aria-hidden="true"></i>
                 <h3>Installation et Mise en Service</h3>
                 <p>Mise en place et validation.</p>
             </div>
-            <div class="service-card" data-tab="formation">
-                <i class="fas fa-graduation-cap"></i>
+            <div class="service-card" data-tab="formation" role="button" tabindex="0">
+                <i class="fas fa-graduation-cap" aria-hidden="true"></i>
                 <h3>Formation et Entraînement</h3>
                 <p>Formations pour opérateurs et ingénieurs.</p>
             </div>
-            <div class="service-card last-card" data-tab="maintenance">
-                <i class="fas fa-wrench"></i>
+            <div class="service-card last-card" data-tab="maintenance" role="button" tabindex="0">
+                <i class="fas fa-wrench" aria-hidden="true"></i>
                 <h3>Maintenance</h3>
                 <p>Entretien et calibrage.</p>
             </div>
@@ -487,52 +514,53 @@
         <h3 id="industries">Industries que nous servons</h3>
         <div class="industries-grid">
             <div class="industry-card">
-                <i class="fas fa-oil-can"></i>
+                <i class="fas fa-oil-can" aria-hidden="true"></i>
                 <p>Pétrole et gaz</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-bolt"></i>
+                <i class="fas fa-bolt" aria-hidden="true"></i>
                 <p>Énergie (électricité, renouvelables)</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-car"></i>
+                <i class="fas fa-car" aria-hidden="true"></i>
                 <p>Automobile</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-utensils"></i>
+                <i class="fas fa-utensils" aria-hidden="true"></i>
                 <p>Agroalimentaire</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-capsules"></i>
+                <i class="fas fa-capsules" aria-hidden="true"></i>
                 <p>Pharmaceutique</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-industry"></i>
+                <i class="fas fa-industry" aria-hidden="true"></i>
                 <p>Fabrication industrielle</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-hammer"></i>
+                <i class="fas fa-hammer" aria-hidden="true"></i>
                 <p>Industriel métallique</p>
             </div>
             <div class="industry-card">
-                <i class="fas fa-robot"></i>
+                <i class="fas fa-robot" aria-hidden="true"></i>
                 <p>Robotique</p>
             </div>
         </div>
     </section>
     <section id="contact">
         <h2>Contact</h2>
-        <p>Contactez-moi : <a href="mailto:ton.email@example.com">ton.email@example.com</a></p>
-        <p>Téléphone : <a href="tel:+336XXXXXXXX">+33 6 XX XX XX XX</a></p>
-        <p>Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
+        <p>Contactez-moi : <a href="mailto:ton.email@example.com" aria-label="Envoyer un email à AutoTech Solutions">ton.email@example.com</a></p>
+        <p>Téléphone : <a href="tel:+336XXXXXXXX" aria-label="Appeler AutoTech Solutions au +33 6 XX XX XX XX">+33 6 XX XX XX XX</a></p>
+        <p>Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank" aria-label="Visiter le profil LinkedIn d'AutoTech Solutions">LinkedIn</a></p>
     </section>
     <footer>
-        <p>© 2025 - Portfolio d’Ingénieur Automaticien</p>
+        <p>© 2025 - AutoTech Solutions</p>
     </footer>
-    <div class="overlay" id="overlay"></div>
-    <div class="modal" id="modal">
+    <div class="overlay" id="overlay" tabindex="-1"></div>
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
         <h4 id="modal-title"></h4>
         <p id="modal-content"></p>
+        <button class="modal-close" aria-label="Fermer la modale">&times;</button>
     </div>
     <script>
         // Données des sous-services
@@ -645,6 +673,24 @@
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
+        // Gestion des sous-menus pour l'accessibilité
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.setAttribute('aria-expanded', 'true');
+            });
+            item.addEventListener('mouseleave', () => {
+                item.setAttribute('aria-expanded', 'false');
+            });
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const isExpanded = item.getAttribute('aria-expanded') === 'true';
+                    item.setAttribute('aria-expanded', !isExpanded);
+                }
+            });
+        });
+
         // Onglets services (cartes)
         const serviceCards = document.querySelectorAll('.service-card');
         const dropdownItems = document.querySelectorAll('.dropdown-item');
@@ -663,6 +709,8 @@
             selectedServiceContainer.classList.add('active');
             const selectedCardClone = selectedCard.cloneNode(true);
             selectedCardClone.classList.add('active');
+            selectedCardClone.setAttribute('tabindex', '0');
+            selectedCardClone.setAttribute('role', 'button');
             selectedServiceContainer.appendChild(selectedCardClone);
 
             // Ajouter les sous-services dynamiquement
@@ -676,9 +724,11 @@
                 subServices.forEach(service => {
                     const serviceDiv = document.createElement('div');
                     serviceDiv.classList.add('service');
+                    serviceDiv.setAttribute('role', 'button');
+                    serviceDiv.setAttribute('tabindex', '0');
                     serviceDiv.dataset.details = service.details;
                     serviceDiv.innerHTML = `
-                        <i class="${service.icon}"></i>
+                        <i class="${service.icon}" aria-hidden="true"></i>
                         <h3>${service.title}</h3>
                         <p>${service.description}</p>
                     `;
@@ -706,6 +756,12 @@
             card.addEventListener('click', () => {
                 updateServiceDisplay(card);
             });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    updateServiceDisplay(card);
+                }
+            });
         });
 
         // Synchroniser la barre de navigation au clic sur les liens du sous-menu
@@ -726,31 +782,88 @@
         });
 
         // Gestion de la modale pour les détails des sous-services
+        let lastFocusedElement = null;
         function addModalListeners() {
             const services = document.querySelectorAll('.service');
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modal-title');
             const modalContent = document.getElementById('modal-content');
             const overlay = document.getElementById('overlay');
+            const modalClose = document.querySelector('.modal-close');
 
             services.forEach(service => {
                 service.addEventListener('click', () => {
-                    // Remplir la modale avec les détails
-                    const title = service.querySelector('h3').textContent;
-                    const details = service.dataset.details;
-                    modalTitle.textContent = title;
-                    modalContent.textContent = details;
-
-                    // Afficher la modale et l'overlay
-                    modal.classList.add('active');
-                    overlay.classList.add('active');
+                    openModal(service);
+                });
+                service.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(service);
+                    }
                 });
             });
 
-            // Fermer la modale en cliquant sur l'overlay
-            overlay.addEventListener('click', () => {
+            function openModal(service) {
+                // Sauvegarder l'élément qui a ouvert la modale
+                lastFocusedElement = document.activeElement;
+
+                // Remplir la modale avec les détails
+                const title = service.querySelector('h3').textContent;
+                const details = service.dataset.details;
+                modalTitle.textContent = title;
+                modalContent.textContent = details;
+
+                // Afficher la modale et l'overlay
+                modal.classList.add('active');
+                overlay.classList.add('active');
+
+                // Déplacer le focus sur la modale
+                modalClose.focus();
+            }
+
+            // Fermer la modale
+            function closeModal() {
                 modal.classList.remove('active');
                 overlay.classList.remove('active');
+
+                // Restaurer le focus sur l'élément qui a ouvert la modale
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            // Fermer la modale en cliquant sur l'overlay
+            overlay.addEventListener('click', closeModal);
+
+            // Fermer la modale avec le bouton de fermeture
+            modalClose.addEventListener('click', closeModal);
+
+            // Fermer la modale avec la touche Échap
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // Piéger le focus dans la modale
+            const focusableElements = modal.querySelectorAll('button, [tabindex]:not([tabindex="-1"])');
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) { // Shift + Tab
+                        if (document.activeElement === firstFocusableElement) {
+                            e.preventDefault();
+                            lastFocusableElement.focus();
+                        }
+                    } else { // Tab
+                        if (document.activeElement === lastFocusableElement) {
+                            e.preventDefault();
+                            firstFocusableElement.focus();
+                        }
+                    }
+                }
             });
         }
 
