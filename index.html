@@ -46,14 +46,6 @@
             justify-content: center;
             position: relative;
         }
-        .nav-logo {
-            height: 40px;
-            margin-right: 2em;
-            transition: transform 0.3s;
-        }
-        .nav-logo:hover {
-            transform: scale(1.1);
-        }
         .nav-item {
             position: relative;
         }
@@ -211,6 +203,14 @@
             margin-top: 2em;
             margin-bottom: 2em;
         }
+        .selected-service {
+            color: #FFC300;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 1em;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
         .service {
             background: #FFFFFF;
             border: 1px solid #F5F5F5;
@@ -339,13 +339,6 @@
             transition: color 0.3s;
         }
         .contact a:hover { color: #FF8C00; }
-        .illustration {
-            display: block;
-            margin: 1em auto;
-            max-width: 100%;
-            height: auto;
-            animation: fadeIn 1s ease-out;
-        }
         @keyframes fadeInUp {
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -365,7 +358,6 @@
         @media (max-width: 600px) {
             header h1 { font-size: 1.8em; }
             nav { flex-direction: column; align-items: center; }
-            .nav-logo { margin-right: 0; margin-bottom: 1em; }
             .nav-item { width: 100%; }
             nav a { display: block; margin: 0.5em 0; }
             .dropdown {
@@ -385,7 +377,6 @@
                 justify-content: flex-start;
                 padding: 2em;
             }
-            .illustration { max-width: 80%; }
             .modal {
                 width: 90%;
                 padding: 1.2em;
@@ -400,7 +391,6 @@
         <a href="#services">Découvrir mes services</a>
     </header>
     <nav>
-        <img src="automation-graphic.png" alt="Illustration abstraite d'automatisme" class="nav-logo">
         <div class="nav-item">
             <a href="#home"><i class="fas fa-home"></i> Accueil</a>
         </div>
@@ -427,12 +417,10 @@
     </nav>
     <section id="home">
         <h2>Accueil</h2>
-        <img src="circuit-lines.png" alt="Illustration de lignes de circuit technologiques" class="illustration">
         <p>Ingénieur automaticien passionné, je propose des solutions complètes pour l’industrie : de la fourniture de matériel à la mise en service, en passant par la formation et la maintenance. Cliquez ci-dessous pour explorer mes services.</p>
     </section>
     <section id="services">
         <h2>Services</h2>
-        <img src="particles.png" alt="Illustration de particules dispersées" class="illustration">
         <div class="services-grid">
             <div class="service-card active" data-tab="etude-solution">
                 <i class="fas fa-hammer"></i>
@@ -478,6 +466,7 @@
                     <p>Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.</p>
                 </div>
             </div>
+            <div class="selected-service">Service sélectionné : Étude et Solution</div>
         </div>
         <div class="services-content" id="fournitures">
             <div class="services-grid">
@@ -497,6 +486,7 @@
                     <p>Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.</p>
                 </div>
             </div>
+            <div class="selected-service">Service sélectionné : Fournitures et Matériel</div>
         </div>
         <div class="services-content" id="installation">
             <div class="services-grid">
@@ -516,6 +506,7 @@
                     <p>Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.</p>
                 </div>
             </div>
+            <div class="selected-service">Service sélectionné : Installation et Mise en Service</div>
         </div>
         <div class="services-content" id="formation">
             <div class="services-grid">
@@ -535,6 +526,7 @@
                     <p>Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.</p>
                 </div>
             </div>
+            <div class="selected-service">Service sélectionné : Formation et Entraînement</div>
         </div>
         <div class="services-content" id="maintenance">
             <div class="services-grid">
@@ -554,12 +546,12 @@
                     <p>Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.</p>
                 </div>
             </div>
+            <div class="selected-service">Service sélectionné : Maintenance</div>
         </div>
     </section>
     <section id="about">
         <h2>À propos</h2>
         <h3 id="qui-nous-sommes">Qui nous sommes</h3>
-        <img src="hexagonal-sphere.png" alt="Illustration d'une sphère hexagonale symbolisant l'innovation" class="illustration">
         <p>Nous sommes une entreprise spécialisée dans les solutions d’automatisme et d’instrumentation pour l’industrie. Nous offrons des services complets allant de la conception et la programmation à la mise en service, la maintenance, et la formation, en mettant l’accent sur l’innovation et la fiabilité.</p>
         <h3 id="industries">Industries que nous servons</h3>
         <div class="industries-grid">
@@ -599,7 +591,6 @@
     </section>
     <section id="contact">
         <h2>Contact</h2>
-        <img src="circuit-lines-orange.png" alt="Illustration de lignes de circuit avec des segments orange" class="illustration">
         <p>Contactez-moi : <a href="mailto:ton.email@example.com">ton.email@example.com</a></p>
         <p>Téléphone : <a href="tel:+336XXXXXXXX">+33 6 XX XX XX XX</a></p>
         <p>Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
