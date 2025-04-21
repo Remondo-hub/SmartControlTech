@@ -697,6 +697,9 @@
 
             // Ajouter les écouteurs pour la modale après la création des sous-services
             addModalListeners();
+
+            // Faire défiler automatiquement vers selected-service-container
+            document.querySelector('#selected-service-container').scrollIntoView({ behavior: 'smooth' });
         }
 
         serviceCards.forEach(card => {
