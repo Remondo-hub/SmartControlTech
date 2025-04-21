@@ -67,10 +67,19 @@
             color: #0A1F44;
             cursor: pointer;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5em; /* Espacement entre l’icône et le texte */
+        }
+        .language-toggle button i {
+            font-size: 1.2em; /* Taille de l’icône */
         }
         .language-toggle button:hover {
             background: #00B2FF;
             color: #FFFFFF;
+        }
+        .language-toggle button:hover i {
+            color: #FFFFFF; /* L’icône change de couleur au survol */
         }
         .language-toggle button:focus {
             outline: 2px solid #00B2FF;
@@ -503,7 +512,9 @@
             <a href="#contact" aria-label="Go to Contact section"><i class="fas fa-envelope" aria-hidden="true"></i> Contact</a>
         </div>
         <div class="language-toggle">
-            <button id="language-toggle" aria-label="Switch to French language">Français</button>
+            <button id="language-toggle" aria-label="Switch to French language">
+                <i class="fas fa-globe" aria-hidden="true"></i> Français
+            </button>
         </div>
     </nav>
     <section id="home">
@@ -736,7 +747,7 @@
             document.querySelector('.dropdown-item[data-tab="maintenance"]').textContent = 'Maintenance';
             document.querySelector('a[href="#qui-nous-sommes"]').textContent = 'Qui nous sommes';
             document.querySelector('a[href="#industries"]').textContent = 'Industries que nous servons';
-            languageToggle.textContent = 'English';
+            languageToggle.innerHTML = '<i class="fas fa-globe" aria-hidden="true"></i> English';
             languageToggle.setAttribute('aria-label', 'Switch to English language');
 
             // Section Home
@@ -805,8 +816,8 @@
             ];
             subServicesData['maintenance'] = [
                 { icon: 'fas fa-wrench', title: 'Maintenance des installations électriques industrielles', description: 'Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.', details: 'Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.' },
-                { icon: 'fas fa-tools', title: 'Calibrage de capteurs, transmetteurs et actionneurs', description: 'Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.', details: 'Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.' },
-                { icon: 'fas fa-cogs', title: 'Paramétrage d’instruments pour applications industrielles', description: 'Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.', details: 'Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.' }
+                { icon: 'fas fa-tools', title: 'Calibration of Sensors, Transmitters, and Actuators', description: 'Precise calibration of instruments to ensure optimal performance in industrial processes.', details: 'On-site or workshop calibration, adjustment of pressure and temperature sensors, and verification of 4-20mA transmitters.' },
+                { icon: 'fas fa-cogs', title: 'Configuration of Instruments for Industrial Applications', description: 'Configuration of instruments to meet the specific requirements of industrial applications.', details: 'Configuration of instruments for specific applications like flow control or temperature regulation, with performance testing.' }
             ];
         }
 
