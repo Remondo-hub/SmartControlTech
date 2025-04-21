@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio d'Ingénieur Automaticien</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background: #F5F5F5;
+        }
+        header {
+            background: #0A1F44;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 4em 1em;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 0.5em; }
+        header p { font-size: 1.2em; margin-bottom: 1em; }
+        header a {
+            background: #00B2FF;
+            color: #FFFFFF;
+            padding: 0.75em 1.5em;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        header a:hover { background: #FF8C00; transform: scale(1.05); }
+        nav {
+            background: #0A1F44;
+            padding: 1em;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .nav-logo {
+            height: 40px;
+            margin-right: 2em;
+            transition: transform 0.3s;
+        }
+        .nav-logo:hover {
+            transform: scale(1.1);
+        }
+        .nav-item {
+            position: relative;
+        }
+        nav a, .dropdown a {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin: 0 1.5em;
+            font-weight: bold;
+            position: relative;
+        }
+        nav a i { margin-right: 0.5em; }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: #00B2FF;
+            transition: width 0.3s;
+        }
+        nav a:hover { color: #00B2FF; }
+        nav a:hover::after { width: 100%; }
+        .dropdown {
+            display: none;
+            position: absolute;
+            background: #0A1F44;
+            min-width: 200px;
+            z-index: 101;
+            top: 100%;
+            left: 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .dropdown a {
+            display: block;
+            padding: 0.5em 1em;
+            margin: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .dropdown a:hover {
+            color: #00B2FF;
+            background: #FF8C00;
+        }
+        .dropdown-item.active {
+            color: #FF8C00;
+        }
+        .dropdown-item.active::after {
+            width: 100%;
+            background: #FF8C00;
+        }
+        .nav-item:hover .dropdown { display: block; }
+        section {
+            padding: 2em;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2em;
+        }
+        #services {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3em;
+        }
+        h2 {
+            color: #0A1F44;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+        }
+        h3 {
+            color: #0A1F44;
+            margin-top: 1em;
+            transition: transform 0.3s, color 0.3s;
+        }
+        h3:hover {
+            transform: translateY(-5px);
+            color: #FFC300;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+            max-width: 600px;
+            margin: 0 auto 2em auto;
+        }
+        .service-card {
+            background: #0A1F44;
+            padding: 0.5em;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background 0.3s;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+            cursor: pointer;
+        }
+        .service-card i {
+            font-size: 1.5em;
+            margin-bottom: 0.3em;
+            color: #FFFFFF;
+            transition: transform 0.3s;
+        }
+        .service-card h3 {
+            color: #FFFFFF;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+        .service-card p {
+            color: #FFFFFF;
+            font-size: 0.8em;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: #FF8C00;
+            box-shadow: 0 4px 12px rgba(255,195,0,0.3);
+        }
+        .service-card:hover i {
+            transform: rotate(360deg);
+        }
+        .service-card.active {
+            background: #FF8C00;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+        }
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .last-card {
+            grid-column: span 2;
+            justify-self: center;
+            width: 50%;
+        }
+        .services-content {
+            display: none;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        }
+        .services-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .services-content .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            max-width: none;
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        .service {
+            background: #FFFFFF;
+            border: 1px solid #F5F5F5;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 0.5s ease-out;
+            cursor: pointer;
+        }
+        .service:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255,195,0,0.3);
+        }
+        .service i {
+            color: #00B2FF;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            transition: color 0.3s;
+        }
+        .service:hover i { color: #FFC300; }
+        .service p {
+            color: #333333;
+            font-size: 0.9em;
+            margin-top: 0.5em;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: #FFFFFF;
+            padding: 1.5em;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-width: 90%;
+            width: 450px;
+            opacity: 0;
+            transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        }
+        .modal.active {
+            display: block;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        .modal h4 {
+            color: #0A1F44;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        .modal p {
+            color: #333333;
+            font-size: 0.9em;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1em;
+            margin-top: 1em;
+        }
+        .industry-card {
+            background: #F5F5F5;
+            padding: 1em;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s, color 0.3s;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+        .industry-card i {
+            font-size: 1.5em;
+            color: #0A1F44;
+            margin-bottom: 0.5em;
+            transition: transform 0.3s, color 0.3s;
+        }
+        .industry-card p {
+            margin: 0;
+            color: #333333;
+        }
+        .industry-card:hover {
+            transform: translateY(-5px);
+            background: #00B2FF;
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(255,195,0,0.3);
+        }
+        .industry-card:hover i {
+            color: #FFFFFF;
+            transform: rotate(360deg);
+        }
+        .industry-card:nth-child(1) { animation-delay: 0.1s; }
+        .industry-card:nth-child(2) { animation-delay: 0.2s; }
+        .industry-card:nth-child(3) { animation-delay: 0.3s; }
+        .industry-card:nth-child(4) { animation-delay: 0.4s; }
+        .industry-card:nth-child(5) { animation-delay: 0.5s; }
+        .industry-card:nth-child(6) { animation-delay: 0.6s; }
+        .industry-card:nth-child(7) { animation-delay: 0.7s; }
+        .industry-card:nth-child(8) { animation-delay: 0.8s; }
+        footer {
+            background: #0A1F44;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 1em;
+        }
+        .contact a {
+            color: #00B2FF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact a:hover { color: #FF8C00; }
+        .illustration {
+            display: block;
+            margin: 1em auto;
+            max-width: 100%;
+            height: auto;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes rotateIcon {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            nav { flex-direction: column; align-items: center; }
+            .nav-logo { margin-right: 0; margin-bottom: 1em; }
+            .nav-item { width: 100%; }
+            nav a { display: block; margin: 0.5em 0; }
+            .dropdown {
+                position: static;
+                display: none;
+                background: #0A1F44;
+                width: 100%;
+            }
+            .nav-item:hover .dropdown { display: block; }
+            .dropdown a { padding: 0.5em 1em; }
+            .services-grid { grid-template-columns: 1fr; max-width: 100%; }
+            .service-card { width: 80%; margin: 0 auto; }
+            .last-card { grid-column: auto; width: 80%; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            #services {
+                min-height: auto;
+                justify-content: flex-start;
+                padding: 2em;
+            }
+            .illustration { max-width: 80%; }
+            .modal {
+                width: 90%;
+                padding: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Expert en Automatisme & Instrumentation</h1>
+        <p>Vos solutions pour l’industrie : fourniture, installation, formation, maintenance</p>
+        <a href="#services">Découvrir mes services</a>
+    </header>
+    <nav>
+        <img src="automation-graphic.png" alt="Illustration abstraite d'automatisme" class="nav-logo">
+        <div class="nav-item">
+            <a href="#home"><i class="fas fa-home"></i> Accueil</a>
+        </div>
+        <div class="nav-item">
+            <a href="#services"><i class="fas fa-tools"></i> Services</a>
+            <div class="dropdown">
+                <a href="#etude-solution" class="dropdown-item active" data-tab="etude-solution">Étude et Solution</a>
+                <a href="#fournitures" class="dropdown-item" data-tab="fournitures">Fournitures et Matériel</a>
+                <a href="#installation" class="dropdown-item" data-tab="installation">Installation, Tests et Mise en Service</a>
+                <a href="#formation" class="dropdown-item" data-tab="formation">Formation et Entraînement</a>
+                <a href="#maintenance" class="dropdown-item" data-tab="maintenance">Maintenance</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="#about"><i class="fas fa-user"></i> À propos</a>
+            <div class="dropdown">
+                <a href="#qui-nous-sommes">Qui nous sommes</a>
+                <a href="#industries">Industries que nous servons</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </nav>
+    <section id="home">
+        <h2>Accueil</h2>
+        <img src="circuit-lines.png" alt="Illustration de lignes de circuit technologiques" class="illustration">
+        <p>Ingénieur automaticien passionné, je propose des solutions complètes pour l’industrie : de la fourniture de matériel à la mise en service, en passant par la formation et la maintenance. Cliquez ci-dessous pour explorer mes services.</p>
+    </section>
+    <section id="services">
+        <h2>Services</h2>
+        <img src="particles.png" alt="Illustration de particules dispersées" class="illustration">
+        <div class="services-grid">
+            <div class="service-card active" data-tab="etude-solution">
+                <i class="fas fa-hammer"></i>
+                <h3>Étude et Solution</h3>
+                <p>Conception, programmation et optimisation.</p>
+            </div>
+            <div class="service-card" data-tab="fournitures">
+                <i class="fas fa-box"></i>
+                <h3>Fournitures et Matériel</h3>
+                <p>Équipements et logiciels industriels.</p>
+            </div>
+            <div class="service-card" data-tab="installation">
+                <i class="fas fa-tools"></i>
+                <h3>Installation et Mise en Service</h3>
+                <p>Mise en place et validation.</p>
+            </div>
+            <div class="service-card" data-tab="formation">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Formation et Entraînement</h3>
+                <p>Formations pour opérateurs et ingénieurs.</p>
+            </div>
+            <div class="service-card last-card" data-tab="maintenance">
+                <i class="fas fa-wrench"></i>
+                <h3>Maintenance</h3>
+                <p>Entretien et calibrage.</p>
+            </div>
+        </div>
+        <div class="services-content active" id="etude-solution">
+            <div class="services-grid">
+                <div class="service" data-details="Analyse des besoins, création de schémas détaillés avec logiciels comme AutoCAD, conformité aux normes IEC, et validation avec le client.">
+                    <i class="fas fa-drafting-compass"></i>
+                    <h3>Conception Électrique & Schémas</h3>
+                    <p>Études techniques, conception de panneaux + schémas électriques conformes aux normes industrielles.</p>
+                </div>
+                <div class="service" data-details="Programmation sur Siemens, Rockwell, ou Schneider, intégration de capteurs et actionneurs, tests de logique de contrôle, et mise en œuvre de protocoles comme Modbus ou OPC.">
+                    <i class="fas fa-code"></i>
+                    <h3>Programmation & Intégration</h3>
+                    <p>Développement de systèmes automatisés (PLC, SCADA, DCS...), logique de contrôle et intégration des équipements de terrain.</p>
+                </div>
+                <div class="service" data-details="Ajustement des boucles PID, optimisation des temps de cycle, rédaction de manuels techniques détaillés, et plans de câblage pour une maintenance simplifiée.">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Optimisation & Documentation</h3>
+                    <p>Optimisation des performances (PID, logique), dispositions de câbles et élaboration des fiches techniques.</p>
+                </div>
+            </div>
+        </div>
+        <div class="services-content" id="fournitures">
+            <div class="services-grid">
+                <div class="service" data-details="Sélection de matériel auprès de fournisseurs certifiés (Siemens, Rockwell), livraison rapide, et compatibilité garantie avec vos systèmes existants.">
+                    <i class="fas fa-boxes"></i>
+                    <h3>Fourniture de matériel et de logiciels</h3>
+                    <p>Approvisionnement en automates programmables (PLC), logiciels SCADA, et composants industriels conformes aux normes IEC 61131-3.</p>
+                </div>
+                <div class="service" data-details="Panneaux assemblés sur mesure, certifiés IP65, avec tests de conformité avant livraison, et documentation complète.">
+                    <i class="fas fa-charging-station"></i>
+                    <h3>Fourniture de panneaux selon les normes</h3>
+                    <p>Livraison de panneaux électriques certifiés pour applications industrielles, respectant les normes de sécurité et de qualité.</p>
+                </div>
+                <div class="service" data-details="Fourniture de capteurs de pression, température et débit, transmetteurs 4-20mA, et actionneurs pneumatiques ou électriques.">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Fourniture d’instruments de processus</h3>
+                    <p>Capteurs, transmetteurs et actionneurs pour la mesure et le contrôle des processus industriels.</p>
+                </div>
+            </div>
+        </div>
+        <div class="services-content" id="installation">
+            <div class="services-grid">
+                <div class="service" data-details="Installation sur site, supervision des équipes, vérification des connexions, et tests fonctionnels pour garantir une mise en service sans faille.">
+                    <i class="fas fa-plug"></i>
+                    <h3>Installation & Supervision</h3>
+                    <p>Mise en place, essais et supervision des panneaux, équipements, et câblage selon les normes.</p>
+                </div>
+                <div class="service" data-details="Configuration des robots industriels, programmation des automates pour des cycles spécifiques, et mise en service avec tests en temps réel.">
+                    <i class="fas fa-robot"></i>
+                    <h3>Mise en Service & Programmation</h3>
+                    <p>Programmation de robots, automates et systèmes, avec mise en service sur site ou à distance.</p>
+                </div>
+                <div class="service" data-details="Tests de sécurité électrique, vérification des signaux 4-20mA, conformité aux normes IEC, et rapport de mise en service.">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Sécurité & Conformité Électrique</h3>
+                    <p>Calibrage des instruments, intégrité des signaux, sécurité électrique et conformité aux normes industrielles.</p>
+                </div>
+            </div>
+        </div>
+        <div class="services-content" id="formation">
+            <div class="services-grid">
+                <div class="service" data-details="Ateliers pratiques sur l’utilisation des interfaces HMI, gestion des alarmes, et dépannage de base sur automates Siemens ou Schneider.">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Formation de base pour les opérateurs</h3>
+                    <p>Cours pratiques pour les opérateurs sur l’utilisation des automates et interfaces HMI.</p>
+                </div>
+                <div class="service" data-details="Cours approfondis sur la programmation IEC 61131-3, configuration SCADA, et stratégies de maintenance préventive.">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Formation professionnelle spécialisée</h3>
+                    <p>Programmes avancés pour ingénieurs sur la programmation PLC, SCADA et maintenance.</p>
+                </div>
+                <div class="service" data-details="Modules interactifs en ligne avec vidéos et quiz, ou sessions en présentiel avec simulations sur matériel réel.">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Formation en ligne / hors ligne</h3>
+                    <p>Formations flexibles en automatisme et instrumentation, disponibles en ligne ou en présentiel.</p>
+                </div>
+            </div>
+        </div>
+        <div class="services-content" id="maintenance">
+            <div class="services-grid">
+                <div class="service" data-details="Inspection régulière des systèmes, diagnostic des pannes, remplacement des composants défectueux, et optimisation de la consommation énergétique.">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Maintenance des installations électriques industrielles</h3>
+                    <p>Maintenance préventive et corrective pour assurer la fiabilité des systèmes électriques industriels.</p>
+                </div>
+                <div class="service" data-details="Calibrage sur site ou en atelier, ajustement des capteurs de pression et température, et vérification des transmetteurs 4-20mA.">
+                    <i class="fas fa-tools"></i>
+                    <h3>Calibrage de capteurs, transmetteurs et actionneurs</h3>
+                    <p>Calibrage précis des instruments pour garantir des performances optimales dans les processus industriels.</p>
+                </div>
+                <div class="service" data-details="Configuration des instruments pour des applications spécifiques comme le contrôle de débit ou la régulation de température, avec tests de performance.">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Paramétrage d’instruments pour applications industrielles</h3>
+                    <p>Configuration des instruments pour répondre aux exigences spécifiques des applications industrielles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <h2>À propos</h2>
+        <h3 id="qui-nous-sommes">Qui nous sommes</h3>
+        <img src="hexagonal-sphere.png" alt="Illustration d'une sphère hexagonale symbolisant l'innovation" class="illustration">
+        <p>Nous sommes une entreprise spécialisée dans les solutions d’automatisme et d’instrumentation pour l’industrie. Nous offrons des services complets allant de la conception et la programmation à la mise en service, la maintenance, et la formation, en mettant l’accent sur l’innovation et la fiabilité.</p>
+        <h3 id="industries">Industries que nous servons</h3>
+        <div class="industries-grid">
+            <div class="industry-card">
+                <i class="fas fa-oil-can"></i>
+                <p>Pétrole et gaz</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-bolt"></i>
+                <p>Énergie (électricité, renouvelables)</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-car"></i>
+                <p>Automobile</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-utensils"></i>
+                <p>Agroalimentaire</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-capsules"></i>
+                <p>Pharmaceutique</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-industry"></i>
+                <p>Fabrication industrielle</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-hammer"></i>
+                <p>Industriel métallique</p>
+            </div>
+            <div class="industry-card">
+                <i class="fas fa-robot"></i>
+                <p>Robotique</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <img src="circuit-lines-orange.png" alt="Illustration de lignes de circuit avec des segments orange" class="illustration">
+        <p>Contactez-moi : <a href="mailto:ton.email@example.com">ton.email@example.com</a></p>
+        <p>Téléphone : <a href="tel:+336XXXXXXXX">+33 6 XX XX XX XX</a></p>
+        <p>Ou via <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
+    </section>
+    <footer>
+        <p>© 2025 - Portfolio d’Ingénieur Automaticien</p>
+    </footer>
+    <div class="overlay" id="overlay"></div>
+    <div class="modal" id="modal">
+        <h4 id="modal-title"></h4>
+        <p id="modal-content"></p>
+    </div>
+    <script>
+        // Navigation dynamique
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Onglets services (cartes)
+        const serviceCards = document.querySelectorAll('.service-card');
+        const serviceContents = document.querySelectorAll('.services-content');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Réinitialiser les classes actives
+                serviceCards.forEach(c => c.classList.remove('active'));
+                serviceContents.forEach(content => content.classList.remove('active'));
+                dropdownItems.forEach(item => item.classList.remove('active'));
+
+                // Activer la carte et le contenu correspondants
+                card.classList.add('active');
+                document.getElementById(card.dataset.tab).classList.add('active');
+
+                // Activer le lien correspondant dans la barre de navigation
+                const activeTab = card.dataset.tab;
+                const correspondingDropdownItem = document.querySelector(`.dropdown-item[data-tab="${activeTab}"]`);
+                if (correspondingDropdownItem) {
+                    correspondingDropdownItem.classList.add('active');
+                }
+            });
+        });
+
+        // Synchroniser la barre de navigation au clic sur les liens du sous-menu
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tab = item.dataset.tab;
+
+                // Réinitialiser les classes actives
+                serviceCards.forEach(c => c.classList.remove('active'));
+                serviceContents.forEach(content => content.classList.remove('active'));
+                dropdownItems.forEach(i => i.classList.remove('active'));
+
+                // Activer la carte et le contenu correspondants
+                const correspondingCard = document.querySelector(`.service-card[data-tab="${tab}"]`);
+                const correspondingContent = document.getElementById(tab);
+                if (correspondingCard && correspondingContent) {
+                    correspondingCard.classList.add('active');
+                    correspondingContent.classList.add('active');
+                    item.classList.add('active');
+
+                    // Faire défiler jusqu'à la section Services
+                    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Gestion de la modale pour les détails des sous-services
+        const services = document.querySelectorAll('.service');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const overlay = document.getElementById('overlay');
+
+        services.forEach(service => {
+            service.addEventListener('click', () => {
+                // Remplir la modale avec les détails
+                const title = service.querySelector('h3').textContent;
+                const details = service.dataset.details;
+                modalTitle.textContent = title;
+                modalContent.textContent = details;
+
+                // Afficher la modale et l'overlay
+                modal.classList.add('active');
+                overlay.classList.add('active');
+            });
+        });
+
+        // Fermer la modale en cliquant sur l'overlay
+        overlay.addEventListener('click', () => {
+            modal.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
