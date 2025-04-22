@@ -18,7 +18,7 @@
             overflow-x: hidden;
         }
         header {
-            background: #0A1F44;
+            background: linear-gradient(135deg, #0A1F44 0%, #1A3C78 100%);
             color: #FFFFFF;
             text-align: center;
             padding: 3em 1em;
@@ -28,22 +28,6 @@
             justify-content: center;
             position: relative;
             animation: fadeInHeader 1.5s ease-in-out;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Installation industrielle" class="hero-image">		
-            opacity: 0.7; /* Transparence entre 60% et 80% */
-            z-index: 0;
-        }
-        header > * {
-            position: relative;
-            z-index: 1;
         }
         @keyframes fadeInHeader {
             from { opacity: 0; transform: translateY(-20px); }
@@ -294,7 +278,7 @@
             width: 100%;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0. irresistibly ease-in-out, transform 0.6s ease-in-out;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
             padding: 1em 0;
         }
         .services-content.active {
@@ -1126,4 +1110,4 @@
         updateServiceDisplay(initialCard);
     </script>
 </body>
-</html>  
+</html>
