@@ -37,8 +37,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url(https://github.com/Remondo-hub/SmartControlTech/blob/14f52a5f812c242950aed9d514023d59ebff6003/ChatGPT%20Image%2021%20avr.%202025%2C%2019_33_34.png) no-repeat center center / cover;
-            opacity: 0.6; /* Transparence entre 60% et 80% */
+            background: url(https://media.istockphoto.com/id/1448503443/photo/robotics-industry-four-engineering-facility-robot-arm-moving-at-different-directions-high.jpg?s=612x612&w=0&k=20&c=2PoezS_9sXqo0i02l909ho10ATKSfRYTWdwVAj6jeFM=) no-repeat center center / cover;
+            opacity: 0.6;
             z-index: 0;
         }
         header > * {
@@ -294,7 +294,7 @@
             width: 100%;
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0. irresistibly ease-in-out, transform 0.6s ease-in-out;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
             padding: 1em 0;
         }
         .services-content.active {
@@ -353,6 +353,49 @@
             color: #333333;
             font-size: 0.9em;
             margin-top: 0.5em;
+        }
+        /* Style du carrousel */
+        .carousel-container {
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .carousel img.active {
+            opacity: 1;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
         }
         .modal {
             display: none;
@@ -497,6 +540,17 @@
                 padding: 0.5em 1.5em;
                 font-size: 0.9em;
             }
+            .carousel-container {
+                width: 90%;
+                margin: 10px auto;
+            }
+            .carousel img {
+                height: 200px;
+            }
+            .carousel-button {
+                font-size: 1.2rem;
+                padding: 8px;
+            }
             nav {
                 flex-direction: column;
                 align-items: center;
@@ -612,6 +666,7 @@
         <p>Your solutions for industry: supply, installation, training, maintenance</p>
         <a href="#services" aria-label="Discover automation and instrumentation services">Discover my services</a>
     </header>
+
     <nav role="navigation" aria-label="Main menu">
         <div class="nav-item" aria-haspopup="true" aria-expanded="false">
             <a href="#home" aria-label="Go to Home section"><i class="fas fa-home" aria-hidden="true"></i> Home</a>
@@ -646,6 +701,20 @@
         <h2>Home</h2>
         <p>Passionate automation engineer, I offer comprehensive solutions for industry: from equipment supply to commissioning, including training and maintenance. Click below to explore my services.</p>
     </section>
+
+    <!-- Carrousel d'images déplacé ici -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <!-- Remplacez les URL des images ci-dessous par vos propres images -->
+            <img src="https://images.pexels.com/photos/14492746/pexels-photo-14492746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Image 1">
+            <img src="https://media.istockphoto.com/id/1414566486/photo/working-at-refinery-oil-production-platform.jpg?s=612x612&w=0&k=20&c=VMNiRiu6odZutM6qwQ5VMI_aQg5IRVEUlw1jIKgOIVY=" alt="Image 2">
+            <img src="https://media.istockphoto.com/id/954681516/photo/close-up-backside-view-of-engineering-male-construction-worker-stand-holding-safety-yellow.jpg?s=612x612&w=0&k=20&c=nQmb1gHxDoK7VIaCVclk1sclWMeNYl-5R0WN3H7rMaI=" alt="Image 3">
+            <img src="https://media.istockphoto.com/id/1069360792/photo/automotive-production-line-welding-car-body-modern-car-assembly-plant.jpg?s=612x612&w=0&k=20&c=mG-ZLO29BQFttf1UTOw-AoPqWmMSy47p-QgN6RcJWgY=" alt="Image 4">
+        </div>
+        <button class="carousel-button prev">❮</button>
+        <button class="carousel-button next">❯</button>
+    </div>
+
     <section id="services">
         <h2>Services</h2>
         <div class="services-grid" id="services-grid">
@@ -945,6 +1014,9 @@
 
             localStorage.removeItem('scrollPosition');
             localStorage.removeItem('isLanguageChange');
+
+            // Initialiser le carrousel
+            showImage(0);
         });
 
         languageToggle.addEventListener('click', () => {
@@ -959,6 +1031,44 @@
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Script pour le carrousel
+        const carousel = document.querySelector('.carousel');
+        const images = document.querySelectorAll('.carousel img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+            currentIndex = index;
+        }
+
+        function nextImage() {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= images.length) {
+                nextIndex = 0;
+            }
+            showImage(nextIndex);
+        }
+
+        function prevImage() {
+            let prevIndex = currentIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = images.length - 1;
+            }
+            showImage(prevIndex);
+        }
+
+        prevButton.addEventListener('click', prevImage);
+        nextButton.addEventListener('click', nextImage);
+
+        setInterval(nextImage, 3000);
 
         const navItems = document.querySelectorAll('.nav-item');
         navItems.forEach(item => {
@@ -1126,4 +1236,4 @@
         updateServiceDisplay(initialCard);
     </script>
 </body>
-</html>  
+</html>
